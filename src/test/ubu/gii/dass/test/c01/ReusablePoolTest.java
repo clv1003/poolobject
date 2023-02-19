@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ubu.gii.dass.c01.NotFreeInstanceException;
+import ubu.gii.dass.c01.Reusable;
 import ubu.gii.dass.c01.ReusablePool;
 
 /**
@@ -20,6 +22,7 @@ import ubu.gii.dass.c01.ReusablePool;
 public class ReusablePoolTest {
 	
 	ReusablePool p1, p2 = null;
+	Reusable r1, r2, r3 = null;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -53,7 +56,29 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testAcquireReusable() {
-		fail("Not yet implemented");
+
+		// Comprobamos que r1 y r2 son nulos
+		assertNull(r1);
+		assertNull(r2);
+		
+		// Tratamos de adquirir dos recursos nuevos del pool
+		try {
+			r1 = p1.acquireReusable();
+			r2 = p1.acquireReusable();
+			assertNotNull(r1);
+			assertNotNull(r2);
+		} catch (NotFreeInstanceException e) {
+			fail("Ha saltado la excepcion NotFreeInstanceException.");
+		}
+		
+		// Tratamos de adquirir un recurso nuevo del pool que ya esta vacio
+		try {
+			r3 = p1.acquireReusable();
+			fail("r3 no deberia adquirir un nuevo recurso del pool al este estar vacio.");
+		}
+		catch(NotFreeInstanceException e){
+			assertNull(r3);
+		}
 	}
 
 	/**
