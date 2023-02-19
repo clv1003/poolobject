@@ -12,9 +12,9 @@ import org.junit.Test;
 import ubu.gii.dass.c01.ReusablePool;
 
 /**
- * @author Claudia Landeira Viñuela
- * @author Jonás Martínez Sanllorente
- * @author Álvaro Hoyuelos Martín
+ * @author Claudia Landeira 
+ * @author Jonas Martinez 
+ * @author Alvaro Hoyuelos 
  *
  */
 public class ReusablePoolTest {
