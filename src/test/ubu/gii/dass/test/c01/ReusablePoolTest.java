@@ -9,17 +9,24 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ubu.gii.dass.c01.ReusablePool;
+
 /**
- * @author alumno
+ * @author Claudia Landeira Viñuela
+ * @author Jonás Martínez Sanllorente
+ * @author Álvaro Hoyuelos Martín
  *
  */
 public class ReusablePoolTest {
-
+	
+	ReusablePool p1, p2 = null;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		p1 = ReusablePool.getInstance();
 	}
 
 	/**
@@ -34,7 +41,11 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testGetInstance() {
-		fail("Not yet implemented");
+		assertNotNull(p1);
+		assertTrue(p1 instanceof ReusablePool);
+		p2 = ReusablePool.getInstance();
+		assertEquals(p1,p2);
+		
 	}
 
 	/**
