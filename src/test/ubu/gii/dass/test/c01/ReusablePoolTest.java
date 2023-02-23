@@ -59,26 +59,26 @@ public class ReusablePoolTest {
 	public void testAcquireReusable() {
 
 		// Comprobamos que r1 y r2 son nulos
-		assertNull(r1);
-		assertNull(r2);
+		assertNull(this.r1);
+		assertNull(this.r2);
 		
 		// Tratamos de adquirir dos recursos nuevos del pool
 		try {
-			r1 = p1.acquireReusable();
-			r2 = p1.acquireReusable();
-			assertNotNull(r1);
-			assertNotNull(r2);
+			this.r1 = this.p1.acquireReusable();
+			this.r2 = this.p1.acquireReusable();
+			assertNotNull(this.r1);
+			assertNotNull(this.r2);
 		} catch (NotFreeInstanceException e) {
 			fail("Ha saltado la excepcion NotFreeInstanceException.");
 		}
 		
 		// Tratamos de adquirir un recurso nuevo del pool que ya esta vacio
 		try {
-			r3 = p1.acquireReusable();
+			this.r3 = this.p1.acquireReusable();
 			fail("r3 no deberia adquirir un nuevo recurso del pool al este estar vacio.");
 		}
 		catch(NotFreeInstanceException e){
-			assertNull(r3);
+			assertNull(this.r3);
 		}
 	}
 
@@ -88,21 +88,22 @@ public class ReusablePoolTest {
 	@Test
 	public void testReleaseReusable() {
 		try {
-			// Vacio el Pool para obtener el Reusable y liberarlo
-			r1 = p1.acquireReusable();
-			r2 = p1.acquireReusable();
-			
-			p1.releaseReusable(r1);	
-			p1.releaseReusable(r2);	
+			this.r1 = this.p1.acquireReusable();
+			this.r2 = this.p1.acquireReusable();
 			
 		} catch (NotFreeInstanceException e) {
 			fail("Excepcion por intentar liberar una instancia reusable.");
-			
+		}
+		
+		try {
+			this.p1.releaseReusable(this.r1);	
+			this.p1.releaseReusable(this.r2);	
 		} catch (DuplicatedInstanceException e) {
 			fail("Excepcion por intenta liberar una instancia ya creada.");
 		}
+		
 		try {
-			p1.releaseReusable(r2);
+			this.p1.releaseReusable(this.r2);
 			fail("No deberia poder hacer Release del mismo dos veces.");
 		}
 		catch(DuplicatedInstanceException e){
