@@ -92,10 +92,6 @@ public class ReusablePoolTest {
 			r1 = p1.acquireReusable();
 			r2 = p1.acquireReusable();
 			
-			// Compruebo que el nuevo Reusable obtenido no es igual
-			//this.p1.releaseReusable(this.r1);
-			//assertEquals(this.r1,this.r2);
-			
 			p1.releaseReusable(r1);	
 			p1.releaseReusable(r2);	
 			
