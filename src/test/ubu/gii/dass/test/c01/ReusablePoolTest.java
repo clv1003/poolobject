@@ -95,8 +95,6 @@ public class ReusablePoolTest {
 			p1.releaseReusable(r1);	
 			p1.releaseReusable(r2);	
 			
-			//fail("Error por devolver el mismo Reusable al Pool.");
-			
 		} catch (NotFreeInstanceException e) {
 			fail("Excepcion por intentar liberar una instancia reusable.");
 			
