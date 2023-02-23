@@ -101,5 +101,11 @@ public class ReusablePoolTest {
 		} catch (DuplicatedInstanceException e) {
 			fail("Excepcion por intenta liberar una instancia ya creada.");
 		}
+		try {
+			p1.releaseReusable(r2);
+			fail("No deberia poder hacer Release del mismo dos veces.");
+		}
+		catch(DuplicatedInstanceException e){
+		}
 	}
 }
