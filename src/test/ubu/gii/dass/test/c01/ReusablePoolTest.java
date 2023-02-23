@@ -87,7 +87,25 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testReleaseReusable() {
-		fail("Not yet implemented");
+		try {
+			// Vacio el Pool para obtener el Reusable y liberarlo
+			r1 = p1.acquireReusable();
+			r2 = p1.acquireReusable();
+			
+			// Compruebo que el nuevo Reusable obtenido no es igual
+			//this.p1.releaseReusable(this.r1);
+			//assertEquals(this.r1,this.r2);
+			
+			p1.releaseReusable(r1);	
+			p1.releaseReusable(r2);	
+			
+			//fail("Error por devolver el mismo Reusable al Pool.");
+			
+		} catch (NotFreeInstanceException e) {
+			fail("Excepcion por intentar liberar una instancia reusable.");
+			
+		} catch (DuplicatedInstanceException e) {
+			fail("Excepcion por intenta liberar una instancia ya creada.");
+		}
 	}
-
 }
