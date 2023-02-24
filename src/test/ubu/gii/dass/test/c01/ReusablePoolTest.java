@@ -38,6 +38,11 @@ public class ReusablePoolTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		p1 = null;
+		p2 = null;
+		r1 = null;
+		r2 = null;
+		r3 = null;
 	}
 
 	/**
@@ -45,32 +50,36 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testGetInstance() {
+		//Comprobamos que p1 no es null
 		assertNotNull(p1);
+		//Comprobamos si p1 es de clase ReusablePool
 		assertTrue(p1 instanceof ReusablePool);
+		//Guardamos en p2 la instancia y comprobamos si p1 y p2 son iguales
 		p2 = ReusablePool.getInstance();
 		assertEquals(p1,p2);
-		
 	}
 
 	/**
 	 * Test method for {@link ubu.gii.dass.c01.ReusablePool#acquireReusable()}.
 	 */
 	@Test
-	public void testAcquireReusable() {
+	public void testAcquireReusable() throws NotFreeInstanceException {
+		r1 = null;
+		r2 = null;
 
 		// Comprobamos que r1 y r2 son nulos
 		assertNull(this.r1);
 		assertNull(this.r2);
 		
-		// Tratamos de adquirir dos recursos nuevos del pool
+		// Tratamos de adquirir dos recursos nuevos del pool y que ambos tiene valor no null
 		try {
-			this.r1 = this.p1.acquireReusable();
-			this.r2 = this.p1.acquireReusable();
+			this.r1 = this.p1.acquireReusable(); 
+			this.r2 = this.p1.acquireReusable(); 
 			assertNotNull(this.r1);
 			assertNotNull(this.r2);
 		} catch (NotFreeInstanceException e) {
 			fail("Ha saltado la excepcion NotFreeInstanceException.");
-		}
+		}		
 		
 		// Tratamos de adquirir un recurso nuevo del pool que ya esta vacio
 		try {
@@ -80,19 +89,21 @@ public class ReusablePoolTest {
 		catch(NotFreeInstanceException e){
 			assertNull(this.r3);
 		}
+		
 	}
 
 	/**
 	 * Test method for {@link ubu.gii.dass.c01.ReusablePool#releaseReusable(ubu.gii.dass.c01.Reusable)}.
 	 */
 	@Test
-	public void testReleaseReusable() {
+	public void testReleaseReusable() throws DuplicatedInstanceException {
 		try {
 			this.r1 = this.p1.acquireReusable();
 			this.r2 = this.p1.acquireReusable();
-			
+			assertNotNull(this.r1);
+			assertNotNull(this.r2);
 		} catch (NotFreeInstanceException e) {
-			fail("Excepcion por intentar liberar una instancia reusable.");
+			fail();
 		}
 		
 		try {
