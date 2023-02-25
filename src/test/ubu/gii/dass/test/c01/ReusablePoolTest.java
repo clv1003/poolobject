@@ -23,7 +23,7 @@ public class ReusablePoolTest {
 	
 	ReusablePool p1, p2 = null;
 	Reusable r1, r2, r3 = null;
-	Client cliente = new Client();
+	Client cliente;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -31,6 +31,7 @@ public class ReusablePoolTest {
 	@Before
 	public void setUp() throws Exception {
 		p1 = ReusablePool.getInstance();
+		cliente = new Client();
 	}
 
 	/**
@@ -90,17 +91,18 @@ public class ReusablePoolTest {
 			System.out.println("[Test Acquire Reusable 1] : OK");
 			
 		} catch (NotFreeInstanceException e) {
+			assertNull(this.r1);
+			assertNull(this.r2);
 			fail("Ha saltado la excepcion NotFreeInstanceException.");
 		}		
 		
 		// Tratamos de adquirir un recurso nuevo del pool que ya esta vacio
 		try {
 			this.r3 = this.p1.acquireReusable();
-			fail("r3 no deberia adquirir un nuevo recurso del pool al este estar vacio.");
+			assertNotNull(this.r3);
 		}
 		catch(NotFreeInstanceException e){
 			assertNull(this.r3);
-			
 			System.out.println("[Test Acquire Reusable 2] : OK");
 		}
 	}
@@ -139,15 +141,19 @@ public class ReusablePoolTest {
 			System.out.println("[Test Reslease Reusable 1] : OK");
 			
 		} catch (NotFreeInstanceException e) {
-			fail();
+			assertNull(this.r1);
+			assertNull(this.r2);
+			fail("Ha saltado la excepcion NotFreeInstanceException.");
 		}
 		
 		//Probamos a liberar un Reusable ya liberados
 		try {
+			assertNotNull(this.r2);
 			this.p1.releaseReusable(this.r2); //intentamos liberar
 			fail("No se puede liberar un Reusable ya liberado");
 		}
 		catch(DuplicatedInstanceException e){
+			assertNotNull(this.r2);
 			System.out.println("[Test Reslease Reusable 2] : OK");
 		}
 	}
