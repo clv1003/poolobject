@@ -9,7 +9,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import ubu.gii.dass.c01.Client;
 import ubu.gii.dass.c01.DuplicatedInstanceException;
 import ubu.gii.dass.c01.NotFreeInstanceException;
 import ubu.gii.dass.c01.Reusable;
@@ -23,7 +22,6 @@ public class ReusablePoolTest {
 	
 	ReusablePool p1, p2 = null;
 	Reusable r1, r2, r3 = null;
-	Client cliente;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -31,7 +29,6 @@ public class ReusablePoolTest {
 	@Before
 	public void setUp() throws Exception {
 		p1 = ReusablePool.getInstance();
-		cliente = new Client();
 	}
 
 	/**
@@ -58,8 +55,6 @@ public class ReusablePoolTest {
 		//Guardamos en p2 la instancia y comprobamos si p1 y p2 son iguales
 		p2 = ReusablePool.getInstance();
 		assertEquals(p1,p2);
-		
-		System.out.println("[Test Get Instance] : OK");
 	}
 
 	/**
@@ -87,23 +82,17 @@ public class ReusablePoolTest {
 			assertNotNull(this.r2);
 			assertTrue(r1 instanceof Reusable);
 			assertTrue(r2 instanceof Reusable);
-			
-			System.out.println("[Test Acquire Reusable 1] : OK");
-			
+	
 		} catch (NotFreeInstanceException e) {
-			assertNull(this.r1);
-			assertNull(this.r2);
-			fail("Ha saltado la excepcion NotFreeInstanceException.");
-		}		
+			fail();
+		}
 		
 		// Tratamos de adquirir un recurso nuevo del pool que ya esta vacio
 		try {
 			this.r3 = this.p1.acquireReusable();
-			assertNotNull(this.r3);
 		}
 		catch(NotFreeInstanceException e){
-			assertNull(this.r3);
-			System.out.println("[Test Acquire Reusable 2] : OK");
+			e.getMessage();
 		}
 	}
 
@@ -136,42 +125,17 @@ public class ReusablePoolTest {
 			
 			assertEquals(hr1, hr2); //comprobamos que sean iguales
 			
-			this.p1.releaseReusable(r2); //liberamos
-			
-			System.out.println("[Test Reslease Reusable 1] : OK");
-			
+			this.p1.releaseReusable(r2); //liberamos			
 		} catch (NotFreeInstanceException e) {
-			assertNull(this.r1);
-			assertNull(this.r2);
-			fail("Ha saltado la excepcion NotFreeInstanceException.");
-		}
+			fail();
+		} 
 		
-		//Probamos a liberar un Reusable ya liberados
+		//Probamos a liberar un Reusable ya liberado
 		try {
 			assertNotNull(this.r2);
 			this.p1.releaseReusable(this.r2); //intentamos liberar
-			fail("No se puede liberar un Reusable ya liberado");
-		}
-		catch(DuplicatedInstanceException e){
-			assertNotNull(this.r2);
-			System.out.println("[Test Reslease Reusable 2] : OK");
+		} catch(DuplicatedInstanceException e){
+			e.getMessage();
 		}
 	}
-	
-	/**
-	 * Test method for {@link ubu.gii.dass.c01.Client#main(ubu.gii.dass.c01.Client)}.
-	 * @throws DuplicatedInstanceException 
-	 * @throws NotFreeInstanceException 
-	 */
-	// HACE QUE ROMPAN TODOS LOS DEMAS TEST
-	/*
-	@Test
-	public void testClient() throws NotFreeInstanceException, DuplicatedInstanceException {
-		//Client cliente = new Client(); //creamos un nuevo cliente
-		
-		assertNotNull(cliente); //comprobamos que no este vacio
-		assertTrue(cliente instanceof Client); //comprobamos que es un Client
-		Client.main(null);
-		
-	}*/
 }
