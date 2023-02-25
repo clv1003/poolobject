@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ubu.gii.dass.c01.Client;
 import ubu.gii.dass.c01.DuplicatedInstanceException;
 import ubu.gii.dass.c01.NotFreeInstanceException;
 import ubu.gii.dass.c01.Reusable;
@@ -22,6 +23,7 @@ public class ReusablePoolTest {
 	
 	ReusablePool p1, p2 = null;
 	Reusable r1, r2, r3 = null;
+	Client cliente = null;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -29,6 +31,7 @@ public class ReusablePoolTest {
 	@Before
 	public void setUp() throws Exception {
 		p1 = ReusablePool.getInstance();
+		cliente = new Client();
 	}
 
 	/**
@@ -137,5 +140,16 @@ public class ReusablePoolTest {
 		} catch(DuplicatedInstanceException e){
 			e.getMessage();
 		}
+	}
+	
+	/**
+	 * Test method for {@link ubu.gii.dass.c01.Client#main(ubu.gii.dass.c01.Client)}.
+	 * @throws DuplicatedInstanceException
+	 * @throws NotFreeInstanceException
+	 */
+	@Test
+	public void testClient() throws DuplicatedInstanceException, NotFreeInstanceException {
+		assertNotNull(cliente);
+		assertTrue(cliente instanceof Client);
 	}
 }
