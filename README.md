@@ -18,7 +18,6 @@ Authors:
 ## Autores:
 - Claudia Landeira Viñuela
 - Jonás Martínez Sanllorente
-- Álvaro Hoyuelos Martín
 
 ## Enunciado
 En la práctica se va a simular un pequeño desarrollo de un producto software para realizar mediciones sobre él.
@@ -86,7 +85,7 @@ Las instancias de clases en este rol colaboran con otros objetos durante un tiem
 Las instancias de clases en este rol usan los objetos de tipo `Reusable`
 
 #### ReusablePool
-Las instancias de clase en este rol gestionan la creación y obtención de objetos `Reusable` para ser usados por el objeto `Client`. Normalmente es deseable mantener todos los objetos `Reusable` que no se encuentran actualmente en uso en el mismo almacén para mantener una política coherente. Por ello, `ReusablePool` esta diseñada como una clase `Singleton`. La política concreta utilizada en este ejemplo es mantener dos instancias de la clase `Reusable`. En el caso de recibir una petición y no existir instancias disponibles lanza una excepción NotFreeInstanceException
+Las instancias de clase en este rol gestionan la creación y obtención de objetos `Reusable` para ser usados por el objeto `Client`. Normalmente es deseable mantener todos los objetos `Reusable` que no se encuentran actualmente en uso en el mismo almacén para mantener una política coherente. Por ello, `ReusablePool` esta diseñada como una clase `Singleton`. La política concreta utilizada en este ejemplo es mantener dos instancias de la clase `Reusable`. En el caso de recibir una petición y no existir instancias disponibles lanza una excepción `NotFreeInstanceException`
 
 ### Colaboraciones
 Un objeto `Client` invoca a `ReusablePool.acquireReusable()` cuando necesite un objeto `Reusable`. Cuando el `Client` deja de utilizar el objeto invoca el método `ReusablePool.releaseReusable(Reusable)` pasando como parámetro el objeto a liberar. La política de asignación y liberación de objetos `Reusable` esta implementada en `ReusablePool` (número de instancias de objetos `Reusable`, que hacer en el caso de recibir una petición y no existir instancias disponibles...).
