@@ -16,38 +16,38 @@ Authors:
 # Practica 1
 
 ## Autores:
-- Claudia Landeira Viñuela
-- Jonás Martínez Sanllorente
+- Claudia Landeira ViÃ±uela
+- JonÃ¡s MartÃ­nez Sanllorente
 
 ## Enunciado
-En la práctica se va a simular un pequeño desarrollo de un producto software para realizar mediciones sobre él.
+En la prÃ¡ctica se va a simular un pequeÃ±o desarrollo de un producto software para realizar mediciones sobre Ã©l.
 Establecer un caso de estudio que sirva para caracterizar y evaluar tanto el producto desarrollado como el proceso seguido.
 
 ## Objetivo
-- Comprender los objetivos de medición relacionados con la caracterización y la evaluación de productos, procesos y recursos software.
-- Comprender, aplicar y analizar técnicas de medición sobre entidades de productos software relacionados con conjuntos de pruebas de software.
+- Comprender los objetivos de mediciÃ³n relacionados con la caracterizaciÃ³n y la evaluaciÃ³n de productos, procesos y recursos software.
+- Comprender, aplicar y analizar tÃ©cnicas de mediciÃ³n sobre entidades de productos software relacionados con conjuntos de pruebas de software.
 - Comprender, aplicar y analizar medidas relacionadas sobre entidades de proceso y recursos de prueba del software.
 
 ## Proceso de realizacion de las pruebas
-El proceso de desarrollo de la barería de pruebas se va a gestionar utilizando el control de versiones del sistema Git proporcionado por el repositorio de proyectos GitHub.
+El proceso de desarrollo de la barerÃ­a de pruebas se va a gestionar utilizando el control de versiones del sistema Git proporcionado por el repositorio de proyectos GitHub.
 Los pasos para gestionar el proceso son los siguientes:
 1. Cada miembro del equipo tiene que estar registrado en GitHub y Codecov.io.
-2. Uno de los miembros tiene que realizar un fork del repositorio donde se encuentra el código que se quiere probar `https://github.com/clopezno/poolobject`. El nuevo repositorio tiene que ser público.
+2. Uno de los miembros tiene que realizar un fork del repositorio donde se encuentra el cÃ³digo que se quiere probar `https://github.com/clopezno/poolobject`. El nuevo repositorio tiene que ser pÃºblico.
 3. Invitar al resto de miembros del equipo para que puedan participar en el desarrollo de las pruebas.
 4. Vincular el proyecto con Codecov.io.
-5. Cada nuevo test realizado ejecutar un commit/push al repositorio del grupo. El texto del commit tiene que describir el caso de prueba añadido.
-6. Verificar el resultado de las pruebas en el pipeline de integración continua y cómo la calidad del producto va mejorando con las sucesivas integraciones.
+5. Cada nuevo test realizado ejecutar un commit/push al repositorio del grupo. El texto del commit tiene que describir el caso de prueba aÃ±adido.
+6. Verificar el resultado de las pruebas en el pipeline de integraciÃ³n continua y cÃ³mo la calidad del producto va mejorando con las sucesivas integraciones.
 
 ## Requisitos
 
-### Teóricos
+### TeÃ³ricos
 - Conocimiento del proceso de prueba y sus tareas asociadas.
-- Conocimiento de métricas de producto y de proceso.
-- Conocimiento de patrón de diseño Pool Object.
+- Conocimiento de mÃ©tricas de producto y de proceso.
+- Conocimiento de patrÃ³n de diseÃ±o Pool Object.
 - Conocimiento de repositorios de proyectos software.
 - Conocimiento de sistemas de control de versiones.
-- Conocimiento de sistemas que permitan la ejecución de tareas dle proceso de desarrollo software.
-- Conocimiento de sistemas integración continua.
+- Conocimiento de sistemas que permitan la ejecuciÃ³n de tareas dle proceso de desarrollo software.
+- Conocimiento de sistemas integraciÃ³n continua.
 
 ### Software
 - Eclipse IDE for Java Developers.
@@ -55,23 +55,23 @@ Los pasos para gestionar el proceso son los siguientes:
 - Estar registrado con el nombre usuario de la UBU en repositorio de proyectos GitHub.
 - Estar registrado con la cuenta de GitHub en Codecov.io.
 
-### Técnicos
+### TÃ©cnicos
 - Manejo de entorno de desarrollo Eclipse y componentes adicionales (plugins).
-- Compilar, ejecutar pruebas y desplegar la aplicación con Apache Ant.
+- Compilar, ejecutar pruebas y desplegar la aplicaciÃ³n con Apache Ant.
 - Desarrollo de proyectos software con el sistema de control de versiones Git.
-- Automatización de casos de prueba con JUnit4.
-- Cobertura del código con las pruebas usando EclEmma, JaCoCo y Codecov.io.
+- AutomatizaciÃ³n de casos de prueba con JUnit4.
+- Cobertura del cÃ³digo con las pruebas usando EclEmma, JaCoCo y Codecov.io.
 
 # Pool Object
 
-## Sinopsis/Propósito
-Gestionar la reutilización de objetos cuando un tipo de objetos es costoso de crear o sólo se puede crear un número limitado de objetos.´
+## Sinopsis/PropÃ³sito
+Gestionar la reutilizaciÃ³n de objetos cuando un tipo de objetos es costoso de crear o sÃ³lo se puede crear un nÃºmero limitado de objetos.Â´
 ### Fuerzas
-- Un programa sólo puede crear un número limitado de instancias para una clase en particular.
-- Si la creación de instancias de una clase es muy cosatosa, se debería evitar la nueva creación de instancias.
-- Un programa puede evitar crear nuevos objetos reutiliazándolos cuando ellos han terminado su función en vez de tirarlos a la papelera (garbage).
+- Un programa sÃ³lo puede crear un nÃºmero limitado de instancias para una clase en particular.
+- Si la creaciÃ³n de instancias de una clase es muy cosatosa, se deberÃ­a evitar la nueva creaciÃ³n de instancias.
+- Un programa puede evitar crear nuevos objetos reutiliazÃ¡ndolos cuando ellos han terminado su funciÃ³n en vez de tirarlos a la papelera (garbage).
 
-## Solución
+## SoluciÃ³n
 
 ### Estructura
 ![AltText](images/estructura_pool_object.jpg "Estructura Object Pool")
@@ -79,28 +79,33 @@ Gestionar la reutilización de objetos cuando un tipo de objetos es costoso de cr
 ### Participantes
 
 #### Reusable
-Las instancias de clases en este rol colaboran con otros objetos durante un tiempo limitado. Después, ellas no son necesarias para la colaboración.
+Las instancias de clases en este rol colaboran con otros objetos durante un tiempo limitado. DespuÃ©s, ellas no son necesarias para la colaboraciÃ³n.
 
 #### Client
 Las instancias de clases en este rol usan los objetos de tipo `Reusable`
 
 #### ReusablePool
-Las instancias de clase en este rol gestionan la creación y obtención de objetos `Reusable` para ser usados por el objeto `Client`. Normalmente es deseable mantener todos los objetos `Reusable` que no se encuentran actualmente en uso en el mismo almacén para mantener una política coherente. Por ello, `ReusablePool` esta diseñada como una clase `Singleton`. La política concreta utilizada en este ejemplo es mantener dos instancias de la clase `Reusable`. En el caso de recibir una petición y no existir instancias disponibles lanza una excepción `NotFreeInstanceException`
+Las instancias de clase en este rol gestionan la creaciÃ³n y obtenciÃ³n de objetos `Reusable` para ser usados por el objeto `Client`. Normalmente es deseable mantener todos los objetos `Reusable` que no se encuentran actualmente en uso en el mismo almacÃ©n para mantener una polÃ­tica coherente. Por ello, `ReusablePool` esta diseÃ±ada como una clase `Singleton`. La polÃ­tica concreta utilizada en este ejemplo es mantener dos instancias de la clase `Reusable`. En el caso de recibir una peticiÃ³n y no existir instancias disponibles lanza una excepciÃ³n `NotFreeInstanceException`
 
 ### Colaboraciones
-Un objeto `Client` invoca a `ReusablePool.acquireReusable()` cuando necesite un objeto `Reusable`. Cuando el `Client` deja de utilizar el objeto invoca el método `ReusablePool.releaseReusable(Reusable)` pasando como parámetro el objeto a liberar. La política de asignación y liberación de objetos `Reusable` esta implementada en `ReusablePool` (número de instancias de objetos `Reusable`, que hacer en el caso de recibir una petición y no existir instancias disponibles...).
+Un objeto `Client` invoca a `ReusablePool.acquireReusable()` cuando necesite un objeto `Reusable`. Cuando el `Client` deja de utilizar el objeto invoca el mÃ©todo `ReusablePool.releaseReusable(Reusable)` pasando como parÃ¡metro el objeto a liberar. La polÃ­tica de asignaciÃ³n y liberaciÃ³n de objetos `Reusable` esta implementada en `ReusablePool` (nÃºmero de instancias de objetos `Reusable`, que hacer en el caso de recibir una peticiÃ³n y no existir instancias disponibles...).
 
 ## Cobertura de las pruebas
 
 ### Cobertura de las pruebas con EclEmma y test JUnit4
-Como se puede apreciar en la imagen, los tests realizados cubren un 100% de la clase ReusablePool. Además de que dichas pruebas, son superadas por el código.
-![AltText](images/eclemma_junit.jpg "Cobertura de pruebas")
+Como se puede apreciar en la imagen, los tests realizados cubren un 100% de la clase ReusablePool. AdemÃ¡s de que dichas pruebas, son superadas por el cÃ³digo.
+![AltText](images/eclemma_junit2.jpg "Cobertura de pruebas")
 
 ## Especificacion textual
 
 ### Proceso
-En la siguiente imagen, se puede ver como se comenzó con un 6,82% de cobertura y se ha terminado con el actual 82,4%. [CAMBIAR CAPTURA A LA DEL ULTIMO COMMIT]
-![AltText](images/codecov_porcentajes.jpg "Proceso Codecov")
+En la siguiente imagen, se muestra como el proyecto se comenzÃ³ con un 6,82% y se ha finalizado con un 81%.
+<br>
+![AltText](images/codecov2.jpg "Proceso Codecov 1")
+<br>
+A continuaciÃ³n, vemos como, al igual que en el plugin de EclEmma, con Codecov, tambiÃ©n se ha cubierto el 100% de la clase ReusablePool.
+<br>
+![AltText](images/codecov1.jpg "Proceso Codecov 2")
 
 #### setUp()
 ```java
@@ -110,6 +115,7 @@ En la siguiente imagen, se puede ver como se comenzó con un 6,82% de cobertura y
 @Before
 public void setUp() throws Exception {
 	p1 = ReusablePool.getInstance();
+	cliente = new Client();
 }
 ```
 
@@ -233,8 +239,22 @@ public void testReleaseReusable() throws DuplicatedInstanceException, NotFreeIns
 }
 ```
 
+#### testClient()
+```java
+/**
+* Test method for {@link ubu.gii.dass.c01.Client#main(ubu.gii.dass.c01.Client)}.
+* @throws DuplicatedInstanceException
+* @throws NotFreeInstanceException
+*/
+@Test
+public void testClient() throws DuplicatedInstanceException, NotFreeInstanceException {
+	assertNotNull(cliente);
+	assertTrue(cliente instanceof Client);
+}
+```
+
 ## Preguntas
-1. ¿Se ha realizado trabajo en equipo?
-2. ¿Tiene calidad el conjutno de pruebas desponibles?
-3. ¿Cuál es el esfuerzo invertido en realizar la actividad?
-4. ¿Cuál es el número de fallos encontrados en el código?
+1. Â¿Se ha realizado trabajo en equipo?
+2. Â¿Tiene calidad el conjutno de pruebas desponibles?
+3. Â¿CuÃ¡l es el esfuerzo invertido en realizar la actividad?
+4. Â¿CuÃ¡l es el nÃºmero de fallos encontrados en el cÃ³digo?
