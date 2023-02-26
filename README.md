@@ -254,21 +254,32 @@ public void testClient() throws DuplicatedInstanceException, NotFreeInstanceExce
 ```
 
 ## Preguntas
-1. ¿Se ha realizado trabajo en equipo?
+1. ¿Se ha realizado trabajo en equipo? 
 
-	Como se puede apreciar en los diferentes commits realizados, se ha hecho una distribución de las tareas a realizar. Además se ha trabajado en común en algunos puntos tanto en clase como a través de discord.
+	Como se puede apreciar en los diferentes commits realizados y las respectivas gráficas, se ha hecho una distribución de las tareas a realizar. Además se ha trabajado en común en algunos puntos tanto en clase como a través de discord.
+<br>
 
+![AltText](images/commits2.jpg "Gráfico 1 Commits")
+<br>
+
+![AltText](images/commits1.jpg "Gráfico 2 Commits")
+<br>
+
+[Capturas no actualizadas debido a la realización de los últimos commits]
 
 2. ¿Tiene calidad el conjunto de pruebas desponibles?
 
-	El proyecto ha superado todas las pruebas de JUnit como se puede apreciar con el passing de Java CI gracias a la integración de Ant y en codecov ha superado el 81% de las pruebas de codecov, el resto del porcentaje se debe a las sentencias try/catch.
+	El proyecto ha superado todas las pruebas de JUnit como se puede apreciar con el passing de Java CI gracias a la integración de Ant y en codecov ha superado el 81% de las pruebas de codecov. Además del uso del plugin de EclEmma, donde ha mostrado incluso un porcentaje algo más elevado que en Codecov (84,2%).
 
 
 3. ¿Cuál es el esfuerzo invertido en realizar la actividad?
 
-	Para la realización de esta práctica hemos requerido de más o menos 6-7 horas. Ya que hemos tratado de depurar el código lo máximo posible y de esta manera ir subiendo el porcentaje de codecov.
+	Para la realización de esta práctica hemos requerido de más o menos 6-7 horas repartidas entre varios días. Ya que hemos tratado de depurar el código lo máximo posible y de esta manera ir subiendo el porcentaje de codecov.
+	Además, se ha comenzado pensando en como añadir dichas pruebas teniendo en cuenta todos los casos posibles en los que podían surgir problemas (valores y casos límites).
 
 
 4. ¿Cuál es el número de fallos encontrados en el código?
 
-	No hemos encontrado fallos en el código.
+	Fallos en el código se han encontrado a la hora de ejecutar el main de la clase Client, pero al no ser tema concreto de esta práctica, nos hemos centrado en cubrir el máximo posible en el test de la clase ReusablePool.
+	<br>
+	Se han realizado varios intentos en arreglar este problema pero debido a otras cargas de trabajo y tiempo, decidimos centrarnos en la clase ResusablePool.
